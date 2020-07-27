@@ -4,6 +4,7 @@ from cryptography.fernet import Fernet
 import os
 from os import scandir
 import hashlib
+import getpass
 
 init()
 
@@ -26,13 +27,9 @@ def decrypt(filename, key):
 def ls_dir(path):
     return [obj.name for obj in scandir(path) if obj.is_file()]
 
-def hash_and_key():
-    read_file_key = open("KEY", "r")
-    key = read_file_key.read()
-    read_file_key.close()
-    key = key[:44]
-    key_hash = hashlib.md5(key.encode('utf-8')).hexdigest()
-    return key_hash, key
+def hash_password(password):
+    hash_password = hashlib.md5(password.encode('utf-8')).hexdigest()
+    return hash_password
 
 try:
     disk_file = open("banner.txt",'r',encoding="utf8")
@@ -42,13 +39,18 @@ try:
 except:
     print(Style.DIM+Fore.MAGENTA+"AMG CRY")
 
-key_hash, key = hash_and_key()
+print(Style.DIM+Fore.MAGENTA+"[INPUT] Insert your password: ", end="")
+password = getpass.getpass("")
+password_banner = ""
+
+hash_password = hash_password(password)
 
 print(Style.DIM+Fore.MAGENTA+"[INFO]  ", end="")
-print(Style.DIM+Fore.BLUE+"Key Hash: " + key_hash)
+print(Style.DIM+Fore.BLUE+"Password Hash: " + hash_password)
 
-if key_hash == "53d0a36d7fb8dcc87f3f0decae52f49e":
+if hash_password == "6dc7a808a4185a718dc15bc20449fab5":
     Key_file = "Correct"
+    key = "XtfES6tiITwoQuJxMetmC35MTh5-MxmsWYMk7FrF0o8="
 
     print(Style.DIM+Fore.MAGENTA+"[INFO]  ", end="")
     print(Style.DIM+Fore.BLUE+"Dir: "+os.getcwd()+"\Safe_Box")
@@ -61,7 +63,7 @@ if key_hash == "53d0a36d7fb8dcc87f3f0decae52f49e":
 
     for file in files:
         decrypt("Safe_Box/"+file, key)
-        print("        "+Style.DIM+Fore.MAGENTA+file, end="")
+        print("        ⬡ "+Style.DIM+Fore.MAGENTA+file, end="")
         print(Style.DIM+Fore.BLUE+" File Decrypted")
 
     print(Style.DIM+Fore.MAGENTA+"[INPUT] ", end="")
@@ -72,7 +74,7 @@ if key_hash == "53d0a36d7fb8dcc87f3f0decae52f49e":
 
     for file in files:
         encrypt("Safe_Box/"+file, key)
-        print("        "+Style.DIM+Fore.MAGENTA+file, end="")
+        print("        ⬡ "+Style.DIM+Fore.MAGENTA+file, end="")
         print(Style.DIM+Fore.BLUE+" File Encripted")
 
 else:
