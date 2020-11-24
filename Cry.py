@@ -61,31 +61,31 @@ def write_password(new_password):
 try:
     disk_file = open("banner.txt",'r',encoding="utf8")
     banner = disk_file.read()
-    print(Style.DIM+Fore.MAGENTA+banner)
+    print(Style.DIM+Fore.CYAN+banner)
     disk_file.close()
 except:
-    print(Style.DIM+Fore.MAGENTA+"AMG CRY")
+    print(Style.DIM+Fore.CYAN+"AMG CRY")
 
 key_hash, password_hash = file_hash_password_and_cripto_key()
 
-print(Style.DIM+Fore.MAGENTA+"[INPUT] ", end="")
-print(Style.DIM+Fore.BLUE+"Insert your password: ", end="")
+print(Style.DIM+Fore.CYAN+"[INPUT] ", end="")
+print(Style.DIM+Fore.GREEN+"Insert your password: ", end="")
 password = getpass.getpass("")
 password_banner = ""
 
 hash_password = def_to_hash_password(password)
 
-print(Style.DIM+Fore.MAGENTA+"[INFO]  ", end="")
-print(Style.DIM+Fore.BLUE+"Password Hash: " + hash_password)
+print(Style.DIM+Fore.CYAN+"[INFO]  ", end="")
+print(Style.DIM+Fore.GREEN+"Password Hash: " + hash_password)
 
 if hash_password == password_hash:
     Key_file = "Correct"
-    print(Style.DIM+Fore.BLUE+"\t1) Generate new cripto key \n\t2) Set new password \n\t3) Desencript files")
-    print(Style.DIM+Fore.MAGENTA+"[INPUT] ", end="")
-    print(Style.DIM+Fore.BLUE+"What do you Want?: ", end="")
+    print(Style.DIM+Fore.GREEN+"\t1) Set new password \n\t2) Desencript files")
+    print(Style.DIM+Fore.CYAN+"[INPUT] ", end="")
+    print(Style.DIM+Fore.GREEN+"What do you Want?: ", end="")
 
     operation = int(input())
-
+    '''
     if operation == 1:
         old_key, new_key = write_key()
         files = ls_dir(os.getcwd()+"/Safe_Box")
@@ -96,47 +96,47 @@ if hash_password == password_hash:
 
         print(Style.DIM+Fore.MAGENTA+"[INFO]  ", end="")
         print(Style.DIM+Fore.BLUE+"Generate new cripto key successful")
-
-    elif operation == 2:
-        print(Style.DIM+Fore.MAGENTA+"[INPUT] ", end="")
-        print(Style.DIM+Fore.BLUE+"Insert your new password: ", end="")
+    '''
+    if operation == 1:
+        print(Style.DIM+Fore.CYAN+"[INPUT] ", end="")
+        print(Style.DIM+Fore.GREEN+"Insert your new password: ", end="")
         new_password = getpass.getpass("")
         write_password(new_password)
-        print(Style.DIM+Fore.MAGENTA+"[INFO]  ", end="")
-        print(Style.DIM+Fore.BLUE+"Generate new password successful")
+        print(Style.DIM+Fore.CYAN+"[INFO]  ", end="")
+        print(Style.DIM+Fore.GREEN+"Generate new password successful")
 
-    elif operation == 3:
-            print(Style.DIM+Fore.MAGENTA+"[INFO]  ", end="")
-            print(Style.DIM+Fore.BLUE+"Dir: "+os.getcwd()+"\Safe_Box")
-            print(Style.DIM+Fore.MAGENTA+"[INFO]  ", end="")
-            print(Style.DIM+Fore.BLUE+"File Key: "+Key_file)
-            print(Style.DIM+Fore.MAGENTA+"[INFO]  ", end="")
-            print(Style.DIM+Fore.BLUE+"Files: ")
+    elif operation == 2:
+            print(Style.DIM+Fore.CYAN+"[INFO]  ", end="")
+            print(Style.DIM+Fore.GREEN+"Dir: "+os.getcwd()+"\Safe_Box")
+            print(Style.DIM+Fore.CYAN+"[INFO]  ", end="")
+            print(Style.DIM+Fore.GREEN+"File Key: "+Key_file)
+            print(Style.DIM+Fore.CYAN+"[INFO]  ", end="")
+            print(Style.DIM+Fore.GREEN+"Files: ")
 
             files = ls_dir(os.getcwd()+"/Safe_Box")
 
             for file in files:
                 decrypt("Safe_Box/"+file, key_hash)
-                print("        ⬡ "+Style.DIM+Fore.MAGENTA+file, end="")
-                print(Style.DIM+Fore.BLUE+" File Decrypted")
+                print("        > "+Style.DIM+Fore.CYAN+file, end="")
+                print(Style.DIM+Fore.GREEN+" File Decrypted")
 
-            print(Style.DIM+Fore.MAGENTA+"[INPUT] ", end="")
-            print(Style.DIM+Fore.BLUE+"Press key to continue...", end="")
+            print(Style.DIM+Fore.CYAN+"[INPUT] ", end="")
+            print(Style.DIM+Fore.GREEN+"Press key to continue...", end="")
             input()
-            print(Style.DIM+Fore.MAGENTA+"[INFO]  ", end="")
-            print(Style.DIM+Fore.BLUE+"Files: ")
+            print(Style.DIM+Fore.CYAN+"[INFO]  ", end="")
+            print(Style.DIM+Fore.GREEN+"Files: ")
 
             for file in files:
                 encrypt("Safe_Box/"+file, key_hash)
-                print("        ⬡ "+Style.DIM+Fore.MAGENTA+file, end="")
-                print(Style.DIM+Fore.BLUE+" File Encripted")
+                print("        > "+Style.DIM+Fore.CYAN+file, end="")
+                print(Style.DIM+Fore.GREEN+" File Encripted")
     else:
         print("Error")
 else:
     Key_file = "Incorrect"
-    print(Style.DIM+Fore.MAGENTA+"[INFO]  ", end="")
-    print(Style.DIM+Fore.BLUE+"File Key: " + Key_file)
+    print(Style.DIM+Fore.CYAN+"[INFO]  ", end="")
+    print(Style.DIM+Fore.GREEN+"File Key: " + Key_file)
 
-print(Style.DIM+Fore.MAGENTA+"[INPUT] ", end="")
-print(Style.DIM+Fore.BLUE+"Press key to continue...", end="")
+print(Style.DIM+Fore.CYAN+"[INPUT] ", end="")
+print(Style.DIM+Fore.GREEN+"Press key to continue...", end="")
 input()

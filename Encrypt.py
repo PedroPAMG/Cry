@@ -5,6 +5,8 @@ import os
 from os import scandir
 import hashlib
 
+init()
+
 def encrypt(filename, key):
     f = Fernet(key)
     with open(filename, "rb") as file:
@@ -27,36 +29,36 @@ def hash_and_key():
 try:
     disk_file = open("banner.txt",'r',encoding="utf8")
     banner = disk_file.read()
-    print(Style.DIM+Fore.MAGENTA+banner)
+    print(Style.DIM+Fore.CYAN+banner)
     disk_file.close()
 except:
-    print(Style.DIM+Fore.MAGENTA+"AMG CRY")
+    print(Style.DIM+Fore.CYAN+"AMG CRY")
 
 key_hash, key = hash_and_key()
 
-print(Style.DIM+Fore.MAGENTA+"[INFO]  ", end="")
-print(Style.DIM+Fore.BLUE+"Key Hash: " + key_hash)
+print(Style.DIM+Fore.CYAN+"[INFO]  ", end="")
+print(Style.DIM+Fore.GREEN+"Key Hash: " + key_hash)
 
-encrypt_file_or_dir = input(Style.DIM+Fore.MAGENTA+"[INPUT]"+Style.DIM+Fore.BLUE+" Encript File(0) or Directory(1): ")
+encrypt_file_or_dir = input(Style.DIM+Fore.CYAN+"[INPUT]"+Style.DIM+Fore.GREEN+" Encript File(0) or Directory(1): ")
 
 if encrypt_file_or_dir == "0":
-    file_name = input(Style.DIM+Fore.MAGENTA+"[INPUT]"+Style.DIM+Fore.BLUE+" What is the file name? : ")
+    file_name = input(Style.DIM+Fore.CYAN+"[INPUT]"+Style.DIM+Fore.GREEN+" What is the file name? : ")
     encrypt(file_name, key)
 
-    print(Style.DIM+Fore.MAGENTA+"[INFO]  ", end="")
-    print(Style.DIM+Fore.BLUE+"Files: ")
-    print("        "+Style.DIM+Fore.MAGENTA + file_name, end="")
-    print(Style.DIM+Fore.BLUE+" File Encripted")
+    print(Style.DIM+Fore.CYAN+"[INFO]  ", end="")
+    print(Style.DIM+Fore.GREEN+"Files: ")
+    print("        "+Style.DIM+Fore.CYAN + file_name, end="")
+    print(Style.DIM+Fore.GREEN+" File Encripted")
 
 elif encrypt_file_or_dir == "1":
-    print(Style.DIM+Fore.MAGENTA+"[INFO]  ", end="")
-    print(Style.DIM+Fore.BLUE+"Dir: "+os.getcwd()+"\Safe_Box")
-    print(Style.DIM+Fore.MAGENTA+"[INFO]  ", end="")
-    print(Style.DIM+Fore.BLUE+"Files: ")
+    print(Style.DIM+Fore.CYAN+"[INFO]  ", end="")
+    print(Style.DIM+Fore.GREEN+"Dir: "+os.getcwd()+"\Safe_Box")
+    print(Style.DIM+Fore.CYAN+"[INFO]  ", end="")
+    print(Style.DIM+Fore.GREEN+"Files: ")
 
     files = ls_dir(os.getcwd()+"/Safe_Box")
 
     for file in files:
         encrypt("Safe_Box/"+file, key)
-        print("        "+Style.DIM+Fore.MAGENTA+file, end="")
-        print(Style.DIM+Fore.BLUE+" File Encripted")
+        print("        "+Style.DIM+Fore.CYAN+file, end="")
+        print(Style.DIM+Fore.GREEN+" File Encripted")
